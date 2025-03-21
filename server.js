@@ -29,11 +29,15 @@ const verificarToken = (req, res, next) => {
 };
 
 // 📌 Conectar a MongoDB
-mongoose.connect('mongodb://localhost:27017/fullstack_game', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log("✅ Conectado a MongoDB"))
-  .catch(err => console.error("❌ Error de conexión:", err));
+
+require('dotenv').config();  // Cargar variables de entorno
+
+mongoose.connect("mongodb+srv://camilo:camilo18@fullstak.3obrb.mongodb.net/fullstack_game?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+.then(() => console.log('✅ Conectado a MongoDB Atlas'))
+.catch(err => console.error('❌ Error conectando a MongoDB Atlas:', err));
 
 // 📌 Definir el esquema y modelo de usuario
 const UsuarioSchema = new mongoose.Schema({
